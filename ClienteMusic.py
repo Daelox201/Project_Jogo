@@ -4,7 +4,7 @@ from tkinter import *  # Para la barra de progreso
 from customtkinter import CTk
 from customtkinter import *
 
-SERVER_HOST = '192.168.137.127'
+SERVER_HOST = '192.168.137.138'
 SERVER_PORT = 5555
 
 
@@ -16,10 +16,9 @@ class ReproductorMusica:
     def __init__(self, ventana):
         
         self.ventana = ventana
-        self.ventana.title("Reproductor de Música")
+        
+        
 
-        self.ventana.geometry("900x400")
-        self.ventana.resizable(False, False)
         i = 0 
         for i in range(9):
             self.ventana.grid_columnconfigure(i, weight=1)
@@ -29,7 +28,7 @@ class ReproductorMusica:
 
         
 
-        self.lista_canciones = tk.Listbox(ventana, selectmode=tk.SINGLE)
+        self.lista_canciones = tk.Listbox(ventana, selectmode=tk.SINGLE,font=('Baloo Bhaijaan', 18),border=1,activestyle='none',background="#BDB2C7")
         self.lista_canciones.grid(row=0, column=0, rowspan=4, columnspan=8, sticky="nsew", padx=10, pady=10)
 
 
@@ -66,7 +65,7 @@ class ReproductorMusica:
         self.centrar_ventana()
 
     # Función para subir una canción al servidor
-    def subir_cancion():
+    def subir_cancion(self):
         file_path = filedialog.askopenfilename(title="Seleccionar Archivo", filetypes=[("Archivos de música", "*.mp3")])
         if file_path:
             file_name = os.path.basename(file_path)
@@ -90,6 +89,8 @@ class ReproductorMusica:
                         sent_bytes += len(chunk)
                         if sent_bytes >= file_size:
                             break
+                
+                self.obtener_lista
                 # for chunk in iter(lambda: file.read(1024), b''):
                 #     client_socket.send(chunk)
                 # client_socket.send(b'DONE')  # Indicar al servidor que se completó la transferencia
@@ -130,6 +131,10 @@ class ReproductorMusica:
 
 if __name__ == "__main__":
     ventana_principal = CTk()
+    ventana_principal.configure(bg='black')
+    ventana_principal.title("Reproductor de Música")
+    ventana_principal.geometry("900x400")
+    ventana_principal.resizable(False, False)
     reproductor = ReproductorMusica(ventana_principal)
     reproductor.centrar_ventana()
     ventana_principal.mainloop()

@@ -6,13 +6,12 @@ import tkinter as tk
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from tkinter import scrolledtext
-import mysql.connector
 import os
 
 import pygame
 
 # Configuración del servidor
-SERVER_HOST = '192.168.137.127'
+SERVER_HOST = '192.168.137.138'
 SERVER_PORT = 5555
 
 #Nombre del directorio de la musica
